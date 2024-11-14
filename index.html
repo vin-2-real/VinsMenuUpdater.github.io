@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vins Menu Updater</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f7fc;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            color: #333;
+            flex-direction: column;
+        }
+
+        .container {
+            background-color: white;
+            border-radius: 12px;
+            padding: 30px;
+            width: 100%;
+            max-width: 400px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .container:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+        }
+
+        h1 {
+            font-size: 1.8rem;
+            color: #4e4e4e;
+            margin-bottom: 20px;
+        }
+
+        input[type="text"] {
+            width: 80%;
+            padding: 12px;
+            font-size: 1rem;
+            border: 2px solid #ccc;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            outline: none;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        input[type="text"]:focus {
+            border-color: #007BFF;
+            box-shadow: 0 0 8px rgba(0, 123, 255, 0.5);
+        }
+
+        button {
+            width: 80%;
+            padding: 12px;
+            background-color: #007BFF;
+            color: white;
+            font-size: 1.2rem;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+            transform: translateY(-2px);
+        }
+
+        p {
+            margin-top: 20px;
+            font-size: 1rem;
+            padding: 10px;
+            border-radius: 8px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .up-to-date {
+            background-color: #e8f8e8;
+            color: #28a745;
+        }
+
+        .update-required {
+            background-color: #f8e8e8;
+            color: #dc3545;
+        }
+
+        .invalid-version {
+            background-color: #fff3cd;
+            color: #856404;
+        }
+
+        .social-icons {
+            margin-top: 30px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .social-icons img {
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+        }
+
+    </style>
+    <script>
+        function checkVersion() {
+            var versionInput = document.getElementById("version").value;
+            var message = document.getElementById("message");
+
+            // Split the version into major and minor numbers for comparison
+            var versionParts = versionInput.split(".");
+            var majorVersion = parseInt(versionParts[0]);
+            var minorVersion = parseInt(versionParts[1]);
+
+            // Reset the message style
+            message.classList.remove("up-to-date", "update-required", "invalid-version");
+
+            // Compare versions
+            if (majorVersion < 2 || (majorVersion === 2 && minorVersion < 0)) {
+                message.innerHTML = "Your app version is below 2.0. Please update to the latest version.";
+                message.classList.add("update-required");
+            } else if (majorVersion === 2 && minorVersion >= 0) {
+                message.innerHTML = "Your app is up to date!";
+                message.classList.add("up-to-date");
+            } else {
+                message.innerHTML = "Invalid version format. Please enter a valid version.";
+                message.classList.add("invalid-version");
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>Vins Menu Updater</h1>
+        <label for="version" style="font-size: 1.1rem; color: #555;">Enter your app version:</label>
+        <input type="text" id="version" placeholder="e.g. 1.5 or 2.0" />
+        <button onclick="checkVersion()">Check Version</button>
+        
+        <p id="message"></p>
+    </div>
+
+    <div class="social-icons">
+        <!-- TikTok Icon (transparent black) -->
+        <a href="https://www.tiktok.com/@vin_2_real" target="_blank">
+            <img src="https://pngimg.com/uploads/tiktok/tiktok_PNG27.png" alt="TikTok" />
+        </a>
+        
+        <!-- Discord Icon (transparent black) -->
+        <a href="https://discord.gg/CYvH9Tak2X" target="_blank">
+            <img src="https://www.freeiconspng.com/uploads/discord-black-icon-1.png" />
+        </a>
+        
+        <!-- YouTube Icon (transparent black) -->
+        <a href="https://www.youtube.com/@vin_2_real" target="_blank">
+            <img src="https://clipart-library.com/images_k/youtube-play-button-transparent-png/youtube-play-button-transparent-png-23.png" />
+        </a>
+    </div>
+</body>
+</html>
